@@ -72,15 +72,50 @@ public:
             }
         }
     }
+
+    void menu()
+    {
+        cout<<"Enter the 1 for push"<<endl;
+        cout<<"Enter the 2 for pop"<<endl;
+        cout<<"Enter the 3 for peek"<<endl;
+        cout<<"Enter the 4 for display"<<endl;
+        cout<<"Enter the 5 for exit"<<endl;
+    }
 };
 
 int main()
 {
     stackk st;
+    int choice,val;
+    while(1)
+    {
 
-     st.push(16);
-      st.push(11);
-       st.push(55);
-   st.display();
+        st.menu();
+        cin>>choice;
+        switch(choice)
+        {
+        case 1:
+            cout<<"Enter the value for push"<<endl;
+            cin>>val;
+            st.push(val);
+            break;
+        case 2:
+            st.pop();
+            break;
+        case 3:
+            st.topp();
+            break;
+        case 4:
+            st.display();
+            break;
+        case 5:
+            break;
+        default:
+            cout<<"Please enter the right choice"<<endl;
+
+        }
+    }
+
+
     return 0;
 }
