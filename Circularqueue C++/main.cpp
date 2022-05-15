@@ -29,13 +29,8 @@ class queuee{
          }
          else if(frontt!=0&&backk==n-1)
         {
-            for(int i=frontt;i<backk;i++)
-            {
-                arr[i-frontt]=arr[i];
-                backk=backk-frontt;
-                frontt=0;
-            }
 
+             backk=0;
          }
          else
          {
@@ -61,9 +56,13 @@ class queuee{
                  backk=-1;
 
              }
-             else
+             else if(frontt==n-1)
              {
 
+                 frontt=0;
+             }
+             else
+             {
                  frontt++;
              }
              cout<<"deleted item is "<<val<<endl;
@@ -115,26 +114,26 @@ class queuee{
 int main()
 {
      int choice,val;
-     queuee linearquueue;
+     queuee circularQuueue;
      while(1)
      {
-         linearquueue.menu();
+         circularQuueue.menu();
          cin>>choice;
          switch(choice)
          {
          case 1:
              cout<<"Enter the enqueue"<<endl;
              cin>>val;
-            linearquueue.enqueue(val);
+          circularQuueue.enqueue(val);
             break;
          case 2:
-            linearquueue.dequeue();
+            circularQuueue.dequeue();
             break;
          case 3:
-            linearquueue.peek();
+            circularQuueue.peek();
             break;
          case 4:
-            linearquueue.display();
+            circularQuueue.display();
             break;
          case 5:
             break;
