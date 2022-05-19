@@ -28,12 +28,31 @@ class Traversals{
        }
 
      }
+      void PostOrder(node* root){
+       if(root!=NULL)
+       {
+           PostOrder(root->left);
+           PostOrder(root->right);
+           cout<<root->data<<" ";
+
+       }
+    }
+      void InOrder(node* root){
+       if(root!=NULL)
+       {
+
+           InOrder(root->left);
+           cout<<root->data<<" ";
+           InOrder(root->right);
+       }
+
+     }
 
 };
 int main()
 {
 
-   Traversals Preorder;
+   Traversals traversals;
    node *p = new node(4);
    node *p1 = new node(1);
    node *p2 = new node(6);
@@ -45,8 +64,14 @@ int main()
    p->right=p2;
    p1->left=p3;
    p1->right=p4;
-
-  Preorder.PreOrder(p);
+  cout<<"PreOder traversal "<<endl;
+  traversals.PreOrder(p);
+  cout<<endl;
+  cout<<"PostOder traversal "<<endl;
+  traversals.PostOrder(p);
+  cout<<endl;
+  cout<<"InOder traversal "<<endl;
+  traversals.InOrder(p);
 
     return 0;
 }
