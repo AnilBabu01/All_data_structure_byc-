@@ -50,10 +50,15 @@ class Traversals{
 
         int IsBST(node* root)
         {
-          static  node* pre = NULL;
+           static node* pre=NULL;
+
           if(root!=NULL)
           {
-             if(IsBST(root->left))
+             if(!IsBST(root->left))
+             {
+                 return 0;
+             }
+
              if(pre!=NULL && root->data <=pre->data)
              {
                  return 0;
@@ -68,6 +73,63 @@ class Traversals{
           }
 
        }
+
+   node *Search(node * root ,int key)
+       {
+           if(root==NULL)
+           {
+               return NULL;
+           }
+           else
+           {
+               if(key==root->data)
+               {
+                   return root;
+               }
+               else if(key<root->data)
+               {
+                   return Search(root->left,key);
+               }
+               else
+               {
+                   return Search(root->right,key);
+               }
+
+           }
+
+       }
+
+       node *IterativeSearch(node * root ,int key)
+       {
+           if(root==NULL)
+           {
+               return NULL;
+           }
+           else
+           {
+               while(root!=NULL)
+               {
+                   if(key==root->data)
+                   {
+                       return root;
+                   }
+                   else if(key<root->data)
+                   {
+                       root=root->left;
+                   }
+                   else
+                   {
+                       root=root->right;
+                   }
+
+               }
+
+
+           }
+
+       }
+
+
 };
 int main()
 {
@@ -97,9 +159,19 @@ int main()
   cout<<endl;
   cout<<"InOder traversal "<<endl;
   traversals.InOrder(p);
-
   cout<<endl;
-    cout<<traversals.IsBST(p);
+  cout<<traversals.IsBST(p);
+  cout<<endl;
+  node *n1= traversals.Search(p,6);
+   if(n1!=NULL)
+   {
+       cout<<"Found "<<n1->data;
+   }
+   else
+   {
+       cout<<"Not found"<<endl;
+   }
+
 
     return 0;
 }
