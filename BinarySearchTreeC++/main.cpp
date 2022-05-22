@@ -129,6 +129,89 @@ class Traversals{
 
        }
 
+       void insertion(node* root ,int val)
+       {
+           node* prev;
+           if(root==NULL)
+           {
+               cout<<"This operation is not possible because the tree is empty"<<endl;
+           }
+           else
+           {
+             while(root!=NULL)
+           {
+               prev=root;
+
+               if(val==root->data)
+               {
+                   cout<<"Operation is not possible because Val is already present"<<endl;
+                    return ;
+
+               }else if(val<root->data)
+               {
+                   root=root->left;
+               }
+               else
+               {
+                   root=root->right;
+               }
+           }
+
+           node* n =new node(val);
+           if(val<prev->data)
+           {
+               prev->left=n;
+           }
+           else
+           {
+               prev->right=n;
+           }
+
+           }
+
+       }
+  node* inOrderPredecrssor( node* root)
+    {
+
+      root=root->left;
+      while(root->right!=NULL)
+      {
+          root=root->right;
+      }
+      return root;
+
+    }
+       node* deletenode(node* root,int val)
+       {
+           node* iPre;
+             if(root==NULL)
+             {
+                 cout<<"This operation is not possible because BST is empty"<<endl;
+             }
+             if(root->left==NULL && root->right==NULL)
+             {
+                 delete(root);
+                 return NULL;
+             }
+
+                 if(val<root->data)
+                 {
+                    root->left= deletenode(root->left,val);
+                 }
+                 else if(val>root->data)
+                 {
+                    root->right= deletenode(root->right,val);
+                 }
+                 else
+                 {
+                     iPre = inOrderPredecrssor(root);
+                     root->data=iPre->data;
+                     root->left=deletenode(root->left,iPre->data);
+                 }
+
+          return root;
+       }
+
 
 };
 int main()
@@ -162,7 +245,7 @@ int main()
   cout<<endl;
   cout<<traversals.IsBST(p);
   cout<<endl;
-  node *n1= traversals.Search(p,6);
+  node *n1= traversals.Search(p,1);
    if(n1!=NULL)
    {
        cout<<"Found "<<n1->data;
@@ -171,7 +254,10 @@ int main()
    {
        cout<<"Not found"<<endl;
    }
-
-
+  cout<<endl;
+  traversals.deletenode(p,5);
+  cout<<"InOder traversal "<<endl;
+  traversals.InOrder(p);
+  cout<<endl;
     return 0;
 }
