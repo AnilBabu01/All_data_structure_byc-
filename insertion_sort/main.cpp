@@ -2,19 +2,21 @@
 
 using namespace std;
 
-void bubble_sort(int a[], int s)
+void insertion_sort(int a[], int s)
 {
      for(int i=0;i<s-1;i++)
      {
-         for(int j=0;j<s;j++)
+         int smallest=i;
+         for(int j=i+1;j<s;j++)
          {
-             if(a[j]>a[j+1])
+             if(a[j]<a[smallest])
              {
-                 int temp =a[j];
-                 a[j]=a[j+1];
-                 a[j+1]=temp;
+                smallest=j;
              }
          }
+         int temp =a[i];
+         a[i]=a[smallest];
+         a[smallest]=temp;
      }
 }
 
@@ -36,7 +38,7 @@ int main()
     {
         cin>>arr[i];
     }
-    bubble_sort(arr,s);
+    insertion_sort(arr,s);
 
     cout<<"After bubble sorting "<<endl;
 
